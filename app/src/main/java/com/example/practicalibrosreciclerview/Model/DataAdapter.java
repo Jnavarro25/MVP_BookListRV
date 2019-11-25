@@ -6,20 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.practicalibrosreciclerview.R;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolderData>
+public class DataAdapter
+        extends RecyclerView.Adapter<DataAdapter.ViewHolderData>
+        implements View.OnClickListener
 {
     private ArrayList<Book> bookList;
     private Context context;
+    private View.OnClickListener listener;
 
     public DataAdapter(ArrayList<Book> bookList) {
         this.bookList = bookList;
@@ -32,12 +31,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolderData
         context= parent.getContext();
         View itemView = LayoutInflater.from(context)
                 .inflate(R.layout.item_book,null,false);
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context,"Presionaste un libro",Toast.LENGTH_LONG).show();
-            }
-        });
+
+        itemView.setOnClickListener(this);
 
         return new ViewHolderData(itemView);
     }
@@ -51,6 +46,19 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolderData
     @Override
     public int getItemCount() {
         return bookList.size();
+    }
+
+     public void setOnClickListener(View.OnClickListener listener)
+     {
+         this.listener=listener;
+     }
+    @Override
+    public void onClick(View view)
+    {
+        if(listener!=null)
+        {
+            listener.onClick(view);
+        }
     }
 
     public class ViewHolderData extends RecyclerView.ViewHolder {

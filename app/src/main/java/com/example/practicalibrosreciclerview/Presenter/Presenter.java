@@ -20,7 +20,7 @@ public class Presenter implements Contract.PresenterToModel
 
 
     @Override
-    public void fillList()
+    public void makeRequest()
     {
         getDataService = new GetDataService(context);
         getDataService.getData();

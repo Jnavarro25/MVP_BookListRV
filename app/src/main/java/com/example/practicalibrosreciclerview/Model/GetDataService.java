@@ -70,10 +70,18 @@ public class GetDataService
                 JSONObject object = jsonArray.getJSONObject(i);
                 String title = object.getString("title");
                 JSONObject authorObject = object.getJSONObject("author");
-                String nameAuthor = authorObject.getString("first_name");
+                String firstName = authorObject.getString("first_name");
+                String lastName =authorObject.getString("last_name");
+                String nameAuthor = firstName+" "+lastName;
                 String category = object.getString("category");
                 String imageUrl = object.getString("image_url");
-                book = new Book(title,nameAuthor,category,imageUrl);
+                String createdOn = object.getString("_createdOn");
+                String pagesNumber = object.getString("pages");
+                String isbn = object.getString("isbn");
+                String bookDescription = object.getString("description");
+
+
+                book = new Book(title,nameAuthor,category,imageUrl,createdOn,pagesNumber,isbn,bookDescription);
                 bookList.add(book);
             }
         }
