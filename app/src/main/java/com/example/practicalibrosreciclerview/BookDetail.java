@@ -44,12 +44,12 @@ public class BookDetail extends AppCompatActivity implements Contract.PresenterT
     public void showData() {
         Book book = (Book) getIntent().getSerializableExtra("bookInfo");
         Picasso.with(this).load(book.getUrlImage()).into(bookImage);
-        bookTitle.setText(book.getTitle());
-        authorName.setText(book.getAuthor());
-        cathegory.setText(book.getCategory());
-        date.setText(book.getCreatedOn());
-        pagesNumber.setText(book.getPagesNumber());
-        isbn.setText(book.getIsbn());
-        descriptionBook.setText(book.getDescription());
+        bookTitle.setText("Titulo:"+" "+book.getTitle());
+        authorName.setText("Autor:"+" "+book.getAuthor());
+        cathegory.setText("Categoria:"+" "+book.getCategory());
+        date.setText("Fecha de publicación:"+" "+book.getCreatedOn());
+        pagesNumber.setText("Numero de paginas:"+" "+book.getPagesNumber());
+        isbn.setText("Isbn:"+" "+book.getIsbn());
+        descriptionBook.setText("Descripcion general:"+" "+book.getDescription());
     }
 }

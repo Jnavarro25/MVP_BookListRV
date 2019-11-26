@@ -10,6 +10,7 @@ import com.example.practicalibrosreciclerview.R;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class DataAdapter
@@ -30,7 +31,7 @@ public class DataAdapter
     {
         context= parent.getContext();
         View itemView = LayoutInflater.from(context)
-                .inflate(R.layout.item_book,null,false);
+                .inflate(R.layout.cv_item_book,null,false);
 
         itemView.setOnClickListener(this);
 
@@ -48,10 +49,11 @@ public class DataAdapter
         return bookList.size();
     }
 
-     public void setOnClickListener(View.OnClickListener listener)
+    public void setOnClickListener(View.OnClickListener listener)
      {
          this.listener=listener;
      }
+
     @Override
     public void onClick(View view)
     {
@@ -61,14 +63,18 @@ public class DataAdapter
         }
     }
 
-    public class ViewHolderData extends RecyclerView.ViewHolder {
+    public class ViewHolderData extends RecyclerView.ViewHolder
+    {
         ImageView imageBook ;
         TextView bookTitle;
         TextView authorName;
         TextView category;
 
-        public ViewHolderData(@NonNull View itemView) {
+
+        public ViewHolderData(@NonNull View itemView)
+        {
             super(itemView);
+
             imageBook = itemView.findViewById(R.id.iv_book);
             bookTitle = itemView.findViewById(R.id.tV_book_title);
             authorName= itemView.findViewById(R.id.tV_author_name);

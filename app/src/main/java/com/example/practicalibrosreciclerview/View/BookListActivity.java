@@ -1,13 +1,18 @@
 package com.example.practicalibrosreciclerview.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 
 import com.example.practicalibrosreciclerview.BookDetail;
 import com.example.practicalibrosreciclerview.Model.Book;
@@ -21,14 +26,12 @@ import java.util.ArrayList;
 /**
  * Esta clase + el archivo XML se consideran la VISTA (VIEW)
  */
-public class BookListActivity extends AppCompatActivity implements Contract.PresenterToView
+public class BookListActivity extends AppCompatActivity implements Contract.PresenterToView, SearchView.OnQueryTextListener
 {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private Presenter presenter;
     private Context context= this;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -57,6 +60,7 @@ public class BookListActivity extends AppCompatActivity implements Contract.Pres
         DataAdapter dataAdapter = new DataAdapter(books);
         recyclerView.setAdapter(dataAdapter);
 
+
         dataAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,4 +74,28 @@ public class BookListActivity extends AppCompatActivity implements Contract.Pres
         });
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.search_menu, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        //searchView.setOnQueryTextListener(this);
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s)
+    {
+
+
+        return true;
+    }
 }

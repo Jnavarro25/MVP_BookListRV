@@ -11,11 +11,12 @@ import java.util.ArrayList;
 public class Presenter implements Contract.PresenterToModel
 {
     private Context context;
-    private  GetDataService getDataService;
+    private GetDataService getDataService;
 
     public Presenter (Context context)
     {
         this.context=context;
+
     }
 
 
@@ -29,6 +30,21 @@ public class Presenter implements Contract.PresenterToModel
     @Override
     public ArrayList<Book> returnList() {
        return getDataService.getBookList();
+    }
+
+    @Override
+    public ArrayList<Book> filter(String text,ArrayList<Book> books)
+    {
+            ArrayList<Book> result = new ArrayList<>();
+            text = text.toLowerCase();
+            for(Book item: books)
+            {
+                if(item.getTitle().toLowerCase().contains(text) || item.getIsbn().toLowerCase().contains(text))
+                {
+                    result.add(item);
+                }
+            }
+        return result;
     }
 
 

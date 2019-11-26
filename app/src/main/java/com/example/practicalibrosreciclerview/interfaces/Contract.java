@@ -9,6 +9,8 @@ public interface Contract
     {
         void makeRequest();
         ArrayList<Book> returnList();
+        ArrayList<Book> filter(String text,ArrayList<Book> books);
+
     }
 
     interface  PresenterToView
