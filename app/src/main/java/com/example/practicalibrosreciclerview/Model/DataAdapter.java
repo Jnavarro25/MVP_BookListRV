@@ -1,4 +1,4 @@
-package com.example.practicalibrosreciclerview.Model;
+package com.example.practicalibrosreciclerview.model;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,6 @@ import com.example.practicalibrosreciclerview.R;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class DataAdapter

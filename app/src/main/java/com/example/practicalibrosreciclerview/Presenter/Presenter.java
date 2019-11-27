@@ -1,51 +1,45 @@
-package com.example.practicalibrosreciclerview.Presenter;
+package com.example.practicalibrosreciclerview.presenter;
 
-import android.content.Context;
-
-import com.example.practicalibrosreciclerview.Model.Book;
-import com.example.practicalibrosreciclerview.Model.GetDataService;
-import com.example.practicalibrosreciclerview.interfaces.Contract;
+import com.example.practicalibrosreciclerview.ServiceListener;
+import com.example.practicalibrosreciclerview.model.Book;
+import com.example.practicalibrosreciclerview.model.GetDataService;
 
 import java.util.ArrayList;
 
-public class Presenter implements Contract.PresenterToModel
-{
-    private Context context;
+public class Presenter implements ServiceListener {
+
+    private View view;
     private GetDataService getDataService;
 
-    public Presenter (Context context)
-    {
-        this.context=context;
+    public Presenter() {}
 
+    public void setView(View view) {
+        this.view = view;
     }
 
-
-    @Override
-    public void makeRequest()
-    {
-        getDataService = new GetDataService(context);
+    public void makeRequest() {
+        getDataService = new GetDataService(this);
         getDataService.getData();
     }
 
     @Override
-    public ArrayList<Book> returnList() {
-       return getDataService.getBookList();
+    public void onResult(ArrayList<Book> books) {
+        view.showData(books);
     }
 
-    @Override
-    public ArrayList<Book> filter(String text,ArrayList<Book> books)
-    {
-            ArrayList<Book> result = new ArrayList<>();
-            text = text.toLowerCase();
-            for(Book item: books)
-            {
-                if(item.getTitle().toLowerCase().contains(text) || item.getIsbn().toLowerCase().contains(text))
-                {
-                    result.add(item);
-                }
+    public ArrayList<Book> filter(String text, ArrayList<Book> books) {
+        ArrayList<Book> result = new ArrayList<>();
+        text = text.toLowerCase();
+        for (Book item : books) {
+            if (item.getTitle().toLowerCase().contains(text)
+                    || item.getIsbn().toLowerCase().contains(text)) {
+                result.add(item);
             }
+        }
         return result;
     }
 
-
+    public interface View {
+        void showData(ArrayList<Book> books);
+    }
 }

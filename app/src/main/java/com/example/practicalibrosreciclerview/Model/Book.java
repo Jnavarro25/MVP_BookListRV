@@ -1,9 +1,8 @@
-package com.example.practicalibrosreciclerview.Model;
+package com.example.practicalibrosreciclerview.model;
 
 import java.io.Serializable;
 
-public class Book implements Serializable
-{
+public class Book implements Serializable {
     private String title;
     private String author;
     private String category;
@@ -13,10 +12,17 @@ public class Book implements Serializable
     private String isbn;
     private String description;
 
+    public Book() {}
 
-    public Book(){}
-
-    public Book(String title, String author, String category, String urlImage, String createdOn, String pagesNumber, String isbn, String description) {
+    public Book(
+            String title,
+            String author,
+            String category,
+            String urlImage,
+            String createdOn,
+            String pagesNumber,
+            String isbn,
+            String description) {
         this.title = title;
         this.author = author;
         this.category = category;
