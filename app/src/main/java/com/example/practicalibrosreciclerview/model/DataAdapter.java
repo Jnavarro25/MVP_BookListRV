@@ -32,7 +32,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolderData
   @Override
   public ViewHolderData onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     context = parent.getContext();
-    View itemView = LayoutInflater.from(context).inflate(R.layout.cv_item_book, null, false);
+    View itemView = LayoutInflater.from(context).inflate(R.layout.cv_item_book, parent, false);
 
     itemView.setOnClickListener(this);
 
@@ -60,21 +60,18 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolderData
     }
   }
 
-  public void filter() {}
-
   @Override
   public Filter getFilter() {
     return exampleFilter;
   }
 
-  private Filter exampleFilter =
-      new Filter() {
+  private Filter exampleFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
           List<Book> filteredList = new ArrayList<>();
 
           if (constraint == null || constraint.length() == 0) {
-            filteredList.addAll(bookList);
+            filteredList.addAll(bookListFull);
           } else {
             String filterPattern = constraint.toString().toLowerCase().trim();
 
@@ -94,14 +91,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolderData
 
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-
-            if (bookList.size() != 0) {
-            bookList.clear();
-            bookList.addAll((List) filterResults.values);
-          } else {
-              bookList.addAll((List) filterResults.values);
-          }
-
+          bookList.clear();
+          bookList.addAll((ArrayList)filterResults.values);
           notifyDataSetChanged();
         }
       };
@@ -119,13 +110,14 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolderData
       bookTitle = itemView.findViewById(R.id.tV_book_title);
       authorName = itemView.findViewById(R.id.tV_author_name);
       category = itemView.findViewById(R.id.tV_category);
+
     }
 
     private void dataAsign(Book book) {
-      Picasso.get().load(book.getUrlImage()).into(imageBook);
-      bookTitle.setText(book.getTitle());
-      authorName.setText(book.getAuthor());
-      category.setText(book.getCategory());
+      Picasso.get().load(book.getImageUrl()).into(imageBook);
+      bookTitle.setText("Titulo:"+" "+book.getTitle());
+      authorName.setText("Autor:"+" "+book.getAuthorFirstName()+" "+book.getAuthorLastName());
+      category.setText("Categoria:"+" "+book.getCategory());
     }
   }
 }

@@ -35,11 +35,11 @@ public class BookDetailActivity extends AppCompatActivity {
   public void showData() {
     Book book = (Book) getIntent().getSerializableExtra("bookInfo");
     if (book != null) {
-      Picasso.get().load(book.getUrlImage()).into(bookImage);
+      Picasso.get().load(book.getImageUrl()).into(bookImage);
       bookTitle.setText(getString(R.string.book_title, book.getTitle()));
-      authorName.setText(getString(R.string.author_name, book.getAuthor()));
+      authorName.setText(getString(R.string.author_name, book.getAuthorFirstName(),book.getAuthorLastName()));
       category.setText(getString(R.string.category, book.getCategory()));
-      date.setText(getString(R.string.date, book.getCreatedOn()));
+      date.setText(getString(R.string.date, book.getPublished()));
       pagesNumber.setText(getString(R.string.pages_number, book.getPagesNumber()));
       isbn.setText(getString(R.string.isbn, book.getIsbn()));
       descriptionBook.setText(getString(R.string.description, book.getDescription()));

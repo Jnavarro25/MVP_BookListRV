@@ -1,6 +1,7 @@
 package com.example.practicalibrosreciclerview.view;
 
-import android.app.SearchManager;
+import android.app.ProgressDialog;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,17 +11,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.SearchView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.practicalibrosreciclerview.AddBookActivity;
 import com.example.practicalibrosreciclerview.BookDetailActivity;
 import com.example.practicalibrosreciclerview.R;
 import com.example.practicalibrosreciclerview.model.Book;
 import com.example.practicalibrosreciclerview.model.DataAdapter;
 import com.example.practicalibrosreciclerview.presenter.Presenter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,8 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
   private RecyclerView recyclerView;
   private Context context = this;
   private DataAdapter dataAdapter;
+  private ProgressDialog progressDialog;
+  private FloatingActionButton floatingActionButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +40,8 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
     setContentView(R.layout.activity_rv_book_list);
     Presenter presenter = new Presenter();
     presenter.setView(this);
-    presenter.makeRequest();
     makeComponentsView();
+    presenter.makeRequest();
   }
 
   @Override
@@ -56,6 +59,7 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
         new SearchView.OnQueryTextListener() {
           @Override
           public boolean onQueryTextSubmit(String query) {
+              dataAdapter.getFilter().filter(query);
             return false;
           }
 
@@ -64,17 +68,19 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
             dataAdapter.getFilter().filter(newText);
             return false;
           }
+
+
         });
     return true;
   }
 
   @Override
-  public void showData(final ArrayList<Book> books) {
+  public void showData(final ArrayList<Book> books)
+  {
     dataAdapter = new DataAdapter(books);
     recyclerView.setAdapter(dataAdapter);
 
-    dataAdapter.setOnClickListener(
-        new View.OnClickListener() {
+    dataAdapter.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
 
@@ -82,15 +88,39 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
             int position = recyclerView.getChildAdapterPosition(view);
             detailIntent.putExtra("bookInfo", books.get(position));
             startActivity(detailIntent);
-            System.out.println();
           }
         });
   }
 
-  public void makeComponentsView() {
-    recyclerView = findViewById(R.id.rV_bookList);
-    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-    recyclerView.setHasFixedSize(true);
-    recyclerView.setLayoutManager(linearLayoutManager);
+    @Override
+    public void showProgres() {
+      progressDialog.show();
+    }
+
+    @Override
+    public void hideProgress() {
+      progressDialog.dismiss();
+    }
+
+
+    public void makeComponentsView() {
+        recyclerView = findViewById(R.id.rV_bookList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        progressDialog= new ProgressDialog(BookListActivity.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setMessage(getString(R.string.pd_message));
+        progressDialog.setIndeterminate(true);
+        floatingActionButton = findViewById(R.id.fab_add_book);
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent listToAdd = new Intent(context, AddBookActivity.class);
+                startActivity(listToAdd);
+
+            }
+        });
   }
 }

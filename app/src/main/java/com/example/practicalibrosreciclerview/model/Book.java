@@ -3,71 +3,78 @@ package com.example.practicalibrosreciclerview.model;
 import java.io.Serializable;
 
 public class Book implements Serializable {
-    private String title;
-    private String author;
-    private String category;
-    private String urlImage;
-    private String createdOn;
-    private String pagesNumber;
-    private String isbn;
-    private String description;
 
-    public Book(
-            String title,
-            String author,
-            String category,
-            String urlImage,
-            String createdOn,
-            String pagesNumber,
-            String isbn,
-            String description) {
-        this.title = title;
-        this.author = author;
-        this.category = category;
-        this.urlImage = urlImage;
-        this.createdOn = createdOn;
-        this.pagesNumber = pagesNumber;
-        this.isbn = isbn;
-        this.description = description;
-    }
+  private String isbn;
+  private String title;
+  private String authorFirstName;
+  private String authorLastName;
+  private String published;
+  private String publisher;
+  private String pagesNumber;
+  private String description;
+  private String imageUrl;
+  private String category;
 
-    public String getTitle() {
-        return title;
-    }
+  public Book(
+      String isbn,
+      String title,
+      String authorFirstName,
+      String authorLastName,
+      String published,
+      String publisher,
+      String pagesNumber,
+      String description,
+      String imageUrl,
+      String category) {
+    this.isbn = isbn;
+    this.title = title;
+    this.authorFirstName = authorFirstName;
+    this.authorLastName = authorLastName;
+    this.published = published;
+    this.publisher = publisher;
+    this.pagesNumber = pagesNumber;
+    this.description = description;
+    this.imageUrl = imageUrl;
+    this.category = category;
+  }
 
+  public String getIsbn() {
+    return isbn;
+  }
 
-    public String getAuthor() {
-        return author;
-    }
+  public String getTitle() {
+    return title;
+  }
 
+  public String getAuthorFirstName() {
+    return authorFirstName;
+  }
 
-    public String getCategory() {
-        return category;
-    }
+  public String getAuthorLastName() {
+    return authorLastName;
+  }
 
+  public String getPublished() {
+    return published;
+  }
 
-    public String getUrlImage() {
-        return urlImage;
-    }
+  public String getPublisher() {
+    return publisher;
+  }
 
+  public String getPagesNumber() {
+    return pagesNumber;
+  }
 
-    public String getCreatedOn() {
-        return createdOn;
-    }
+  public String getDescription() {
+    return description;
+  }
 
+  public String getImageUrl() {
+    return imageUrl;
+  }
 
-    public String getPagesNumber() {
-        return pagesNumber;
-    }
-
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-
-    public String getDescription() {
-        return description;
-    }
-
+  public String getCategory() {
+    return category;
+  }
 }
