@@ -64,18 +64,19 @@ public class GetDataService {
   public void setData(HashMap data){
     queue = Volley.newRequestQueue(MyApp.getContext());
     String url = "https://jsonbox.io/box_479f5c073a80294b4c3b";
-
-    JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url,new JSONObject(data),
+    JSONObject jsonObject = new JSONObject(data);
+    JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url,jsonObject,
             new Response.Listener<JSONObject>() {
               @Override
               public void onResponse(JSONObject response) {
 
+                listener.onResultPost(true);
               }
             },
             new Response.ErrorListener() {
               @Override
               public void onErrorResponse(VolleyError error) {
-
+                listener.onResultPost(false);
               }
             }
     );

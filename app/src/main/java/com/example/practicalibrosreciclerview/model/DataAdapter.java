@@ -9,6 +9,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.practicalibrosreciclerview.R;
+import com.example.practicalibrosreciclerview.presenter.Presenter;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +18,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolderData>
-    implements View.OnClickListener, Filterable {
+    implements View.OnClickListener, Filterable, View.OnLongClickListener {
+
   private ArrayList<Book> bookList;
   private ArrayList<Book> bookListFull;
   private Context context;
   private View.OnClickListener listener;
+  private View.OnLongClickListener longListener;
+
 
   public DataAdapter(ArrayList<Book> bookList) {
     this.bookList = bookList;
@@ -35,6 +39,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolderData
     View itemView = LayoutInflater.from(context).inflate(R.layout.cv_item_book, parent, false);
 
     itemView.setOnClickListener(this);
+    itemView.setOnLongClickListener(this);
 
     return new ViewHolderData(itemView);
   }
@@ -53,12 +58,27 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolderData
     this.listener = listener;
   }
 
+  public void setOnLongClickListener(View.OnLongClickListener listener){
+    this.longListener=listener;
+  }
+
+
   @Override
   public void onClick(View view) {
     if (listener != null) {
       listener.onClick(view);
     }
   }
+
+  @Override
+  public boolean onLongClick(View view) {
+    if (longListener != null) {
+      longListener.onLongClick(view);
+    }
+    return true;
+  }
+
+
 
   @Override
   public Filter getFilter() {
@@ -96,6 +116,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolderData
           notifyDataSetChanged();
         }
       };
+
+
 
   public class ViewHolderData extends RecyclerView.ViewHolder {
     ImageView imageBook;

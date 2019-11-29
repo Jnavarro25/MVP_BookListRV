@@ -1,21 +1,13 @@
 package com.example.practicalibrosreciclerview;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-
 import com.example.practicalibrosreciclerview.model.Book;
-import com.example.practicalibrosreciclerview.model.GetDataService;
 import com.example.practicalibrosreciclerview.presenter.Presenter;
-import com.example.practicalibrosreciclerview.view.BookListActivity;
-
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,7 +17,7 @@ public class AddBookActivity extends AppCompatActivity implements  Presenter.Vie
     private Presenter presenter;
     private ProgressDialog progressDialog;
     private Book book;
-    private EditText idBook,bookTitle, authorName, category, date, pagesNumber, isbn, descriptionBook, urlImage, editor;
+    private EditText bookTitle, authorName, category, date, pagesNumber, isbn, descriptionBook, urlImage, editor;
     private Button bntAddBook;
 
 
@@ -41,13 +33,34 @@ public class AddBookActivity extends AppCompatActivity implements  Presenter.Vie
         bntAddBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 makeBook();
                 HashMap data = presenter.convertData(book);
                 presenter.makeRequestPost(data);
+
             }
         });
 
     }
+
+    @Override
+    public void showData(ArrayList<Book> books) {
+
+
+    }
+
+    @Override
+    public void showProgres() {
+        progressDialog.show();
+    }
+
+    @Override
+    public void hideProgress() {
+        progressDialog.dismiss();
+    }
+
+    @Override
+    public void showErrorMessage() {}
 
     private void makeComponentsView() {
 
@@ -62,7 +75,6 @@ public class AddBookActivity extends AppCompatActivity implements  Presenter.Vie
     public void makeBook(){
 
         String  bookTitleS, authorNameS,authorNameFirst,authorNameSecond, categoryS, dateS, pagesNumberS, isbnS, descriptionBookS, urlImageS, editorS;
-
 
         isbn = findViewById(R.id.et_isbn);
         isbnS = isbn.getText().toString();
@@ -96,22 +108,6 @@ public class AddBookActivity extends AppCompatActivity implements  Presenter.Vie
         categoryS= category.getText().toString();
 
         book = new Book(isbnS,bookTitleS,authorNameFirst,authorNameSecond,dateS,editorS,pagesNumberS,descriptionBookS,urlImageS,categoryS);
-
     }
 
-    @Override
-    public void showData(ArrayList<Book> books) {
-
-
-    }
-
-    @Override
-    public void showProgres() {
-    progressDialog.show();
-    }
-
-    @Override
-    public void hideProgress() {
-        progressDialog.dismiss();
-    }
 }

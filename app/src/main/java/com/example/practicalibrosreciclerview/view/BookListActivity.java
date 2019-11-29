@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.SearchView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +24,7 @@ import com.example.practicalibrosreciclerview.model.Book;
 import com.example.practicalibrosreciclerview.model.DataAdapter;
 import com.example.practicalibrosreciclerview.presenter.Presenter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -100,6 +103,11 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
     @Override
     public void hideProgress() {
       progressDialog.dismiss();
+    }
+
+    @Override
+    public void showErrorMessage() {
+        Toast.makeText(this,"Servicio no disponible",Toast.LENGTH_LONG);
     }
 
 
