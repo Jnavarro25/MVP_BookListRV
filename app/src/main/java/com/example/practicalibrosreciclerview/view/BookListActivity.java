@@ -62,7 +62,7 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
         new SearchView.OnQueryTextListener() {
           @Override
           public boolean onQueryTextSubmit(String query) {
-              dataAdapter.getFilter().filter(query);
+            dataAdapter.getFilter().filter(query);
             return false;
           }
 
@@ -71,19 +71,17 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
             dataAdapter.getFilter().filter(newText);
             return false;
           }
-
-
         });
     return true;
   }
 
   @Override
-  public void showData(final ArrayList<Book> books)
-  {
+  public void showData(final ArrayList<Book> books) {
     dataAdapter = new DataAdapter(books);
     recyclerView.setAdapter(dataAdapter);
 
-    dataAdapter.setOnClickListener(new View.OnClickListener() {
+    dataAdapter.setOnClickListener(
+        new View.OnClickListener() {
           @Override
           public void onClick(View view) {
 
@@ -95,40 +93,39 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
         });
   }
 
-    @Override
-    public void showProgres() {
-      progressDialog.show();
-    }
+  @Override
+  public void showProgres() {
+    progressDialog.show();
+  }
 
-    @Override
-    public void hideProgress() {
-      progressDialog.dismiss();
-    }
+  @Override
+  public void hideProgress() {
+    progressDialog.dismiss();
+  }
 
-    @Override
-    public void showErrorMessage() {
-        Toast.makeText(this,"Servicio no disponible",Toast.LENGTH_LONG);
-    }
+  @Override
+  public void showErrorMessage() {
+    Toast.makeText(this, "Servicio no disponible", Toast.LENGTH_LONG);
+  }
 
+  public void makeComponentsView() {
+    recyclerView = findViewById(R.id.rV_bookList);
+    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+    recyclerView.setHasFixedSize(true);
+    recyclerView.setLayoutManager(linearLayoutManager);
+    progressDialog = new ProgressDialog(BookListActivity.this);
+    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+    progressDialog.setMessage(getString(R.string.pd_message));
+    progressDialog.setIndeterminate(true);
+    floatingActionButton = findViewById(R.id.fab_add_book);
 
-    public void makeComponentsView() {
-        recyclerView = findViewById(R.id.rV_bookList);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        progressDialog= new ProgressDialog(BookListActivity.this);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setMessage(getString(R.string.pd_message));
-        progressDialog.setIndeterminate(true);
-        floatingActionButton = findViewById(R.id.fab_add_book);
-
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent listToAdd = new Intent(context, AddBookActivity.class);
-                startActivity(listToAdd);
-
-            }
+    floatingActionButton.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+            Intent listToAdd = new Intent(context, AddBookActivity.class);
+            startActivity(listToAdd);
+          }
         });
   }
 }

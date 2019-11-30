@@ -16,5 +16,20 @@
     <string name="pd_message">Cargando lista</string>
     <string name="pd_message_add_book">Agregando...</string>
 
+    <string name="et_book_title">Titulo del libro</string>
+    <string name="et_author_name">Nombre del autor</string>
+    <string name="et_category">Categoria</string>
+    <string name="et_date">Fecha de publicación</string>
+    <string name="et_pages_number">Numero de paginas</string>
+    <string name="et_isbn">Isbn</string>
+    <string name="et_description">Descripcion</string>
+    <string name="et_url_imagen">URL de la imagen</string>
+    <string name="et_publisher">Editorial</string>
+    <string name="btn_text">Agregar libro</string>
+
+
+
+
+
 
 </resources>

@@ -17,7 +17,6 @@ public class AddBookActivity extends AppCompatActivity implements  Presenter.Vie
     private Presenter presenter;
     private ProgressDialog progressDialog;
     private Book book;
-    private EditText bookTitle, authorName, category, date, pagesNumber, isbn, descriptionBook, urlImage, editor;
     private Button bntAddBook;
 
 
@@ -76,35 +75,35 @@ public class AddBookActivity extends AppCompatActivity implements  Presenter.Vie
 
         String  bookTitleS, authorNameS,authorNameFirst,authorNameSecond, categoryS, dateS, pagesNumberS, isbnS, descriptionBookS, urlImageS, editorS;
 
-        isbn = findViewById(R.id.et_isbn);
+        EditText isbn = findViewById(R.id.et_isbn);
         isbnS = isbn.getText().toString();
 
-        bookTitle = findViewById(R.id.et_title);
+        EditText bookTitle = findViewById(R.id.et_title);
         bookTitleS= bookTitle.getText().toString();
 
-        authorName = findViewById(R.id.et_author);
+        EditText authorName = findViewById(R.id.et_author);
         authorNameS = authorName.getText().toString();
 
         String[] parts = authorNameS.split(" ");
         authorNameFirst = parts[0];
         authorNameSecond = parts[1];
 
-        date = findViewById(R.id.et_fecha_pub);
+        EditText date = findViewById(R.id.et_fecha_pub);
         dateS= date.getText().toString();
 
-        editor = findViewById(R.id.et_editorial);
+        EditText editor = findViewById(R.id.et_editorial);
         editorS= editor.getText().toString();
 
-        pagesNumber = findViewById(R.id.et_pages_number);
+        EditText pagesNumber = findViewById(R.id.et_pages_number);
         pagesNumberS = pagesNumber.getText().toString();
 
-        descriptionBook = findViewById(R.id.et_description);
+        EditText descriptionBook = findViewById(R.id.et_description);
         descriptionBookS = descriptionBook.getText().toString();
 
-        urlImage = findViewById(R.id.et_image_url);
+        EditText urlImage = findViewById(R.id.et_image_url);
         urlImageS = urlImage.getText().toString();
 
-        category = findViewById(R.id.et_category);
+        EditText category = findViewById(R.id.et_category);
         categoryS= category.getText().toString();
 
         book = new Book(isbnS,bookTitleS,authorNameFirst,authorNameSecond,dateS,editorS,pagesNumberS,descriptionBookS,urlImageS,categoryS);

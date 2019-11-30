@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Titulo del libro" />
+                android:hint="@string/et_book_title" />
 
             <EditText
                 android:id="@+id/et_author"
@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Autor" />
+                android:hint="@string/et_author_name" />
 
             <EditText
                 android:id="@+id/et_isbn"
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="ISBN" />
+                android:hint="@string/et_isbn" />
 
             <EditText
                 android:id="@+id/et_category"
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Categoria" />
+                android:hint="@string/et_category" />
 
             <EditText
                 android:id="@+id/et_editorial"
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Editorial" />
+                android:hint="@string/et_publisher" />
 
             <EditText
                 android:id="@+id/et_description"
@@ -62,7 +62,7 @@
                 android:ems="10"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
-                android:hint="Descripcion" />
+                android:hint="@string/et_description" />
 
             <EditText
                 android:id="@+id/et_fecha_pub"
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="date"
-                android:hint="Fecha de publicacion" />
+                android:hint="@string/et_date" />
 
             <EditText
                 android:id="@+id/et_pages_number"
@@ -78,20 +78,27 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number"
-                android:hint="Numero de paginas" />
+                android:hint="@string/et_pages_number" />
 
             <EditText
                 android:id="@+id/et_image_url"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Portada URL" />
+                android:hint="@string/et_url_imagen" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:hint="@string/hello_blank_fragment"/>
+
 
             <Button
                 android:id="@+id/btn_agregar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Agregar libro" />
+                android:text="@string/btn_text" />
 
 
         </LinearLayout>
