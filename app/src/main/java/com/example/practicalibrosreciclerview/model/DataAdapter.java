@@ -9,7 +9,6 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.practicalibrosreciclerview.R;
-import com.example.practicalibrosreciclerview.presenter.Presenter;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolderData
 
   private ArrayList<Book> bookList;
   private ArrayList<Book> bookListFull;
-  private Context context;
   private View.OnClickListener listener;
   private View.OnLongClickListener longListener;
 
@@ -35,7 +33,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolderData
   @NonNull
   @Override
   public ViewHolderData onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    context = parent.getContext();
+    Context context = parent.getContext();
     View itemView = LayoutInflater.from(context).inflate(R.layout.cv_item_book, parent, false);
 
     itemView.setOnClickListener(this);
@@ -119,7 +117,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolderData
 
 
 
-  public class ViewHolderData extends RecyclerView.ViewHolder {
+  class ViewHolderData extends RecyclerView.ViewHolder {
     ImageView imageBook;
     TextView bookTitle;
     TextView authorName;

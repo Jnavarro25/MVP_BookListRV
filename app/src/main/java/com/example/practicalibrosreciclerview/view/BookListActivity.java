@@ -1,8 +1,9 @@
 package com.example.practicalibrosreciclerview.view;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
-
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,11 +13,9 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.SearchView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.practicalibrosreciclerview.AddBookActivity;
 import com.example.practicalibrosreciclerview.BookDetailActivity;
 import com.example.practicalibrosreciclerview.R;
@@ -24,7 +23,6 @@ import com.example.practicalibrosreciclerview.model.Book;
 import com.example.practicalibrosreciclerview.model.DataAdapter;
 import com.example.practicalibrosreciclerview.presenter.Presenter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -35,13 +33,13 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
   private Context context = this;
   private DataAdapter dataAdapter;
   private ProgressDialog progressDialog;
-  private FloatingActionButton floatingActionButton;
+  private Presenter presenter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_rv_book_list);
-    Presenter presenter = new Presenter();
+    presenter = new Presenter();
     presenter.setView(this);
     makeComponentsView();
     presenter.makeRequest();
@@ -91,6 +89,41 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
             startActivity(detailIntent);
           }
         });
+
+
+
+    dataAdapter.setOnLongClickListener(new View.OnLongClickListener() {
+      @Override
+      public boolean onLongClick(View v) {
+        final int bookToDelete = recyclerView.getChildAdapterPosition(v);
+        //Toast.makeText(BookListActivity.this,"Esto es un click largo",Toast.LENGTH_SHORT).show();
+        //presenter.deleteBook(recyclerView.getChildAdapterPosition(v));
+
+        new AlertDialog.Builder(BookListActivity.this)
+                .setTitle("¡Alerta!")
+                .setMessage("Estas seguro que deseas eliminar: "+books.get(bookToDelete).getTitle())
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                  @Override
+                  public void onClick(DialogInterface dialog, int which) {
+
+                   String idToDelete = books.get(bookToDelete).getId();
+                    presenter.deleteBook(idToDelete);
+
+                  }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                  @Override
+                  public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                  }
+        }).setIcon(R.drawable.ic_warning_black_24dp)
+                .show();
+
+
+        return false;
+      }
+    });
+
+
   }
 
   @Override
@@ -105,7 +138,13 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
 
   @Override
   public void showErrorMessage() {
-    Toast.makeText(this, "Servicio no disponible", Toast.LENGTH_LONG);
+    Toast.makeText(this, "Servicio no disponible", Toast.LENGTH_LONG).show();
+  }
+
+  @Override
+  public void makeRefresh() {
+    Intent refresh = new Intent(this, BookListActivity.class);
+    startActivity(refresh);
   }
 
   public void makeComponentsView() {
@@ -117,7 +156,7 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
     progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
     progressDialog.setMessage(getString(R.string.pd_message));
     progressDialog.setIndeterminate(true);
-    floatingActionButton = findViewById(R.id.fab_add_book);
+    FloatingActionButton floatingActionButton = findViewById(R.id.fab_add_book);
 
     floatingActionButton.setOnClickListener(
         new View.OnClickListener() {

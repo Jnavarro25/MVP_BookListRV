@@ -10,15 +10,10 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.practicalibrosreciclerview.MyApp;
-import com.example.practicalibrosreciclerview.R;
 import com.example.practicalibrosreciclerview.ServiceListener;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -70,13 +65,37 @@ public class GetDataService {
               @Override
               public void onResponse(JSONObject response) {
 
-                listener.onResultPost(true);
+                listener.onResultSucces(true);
               }
             },
             new Response.ErrorListener() {
               @Override
               public void onErrorResponse(VolleyError error) {
-                listener.onResultPost(false);
+                listener.onResultSucces(false);
+              }
+            }
+    );
+    queue.add(jsonobj);
+
+  }
+
+  public void deleteData(String key){
+
+    queue = Volley.newRequestQueue(MyApp.getContext());
+    String url = "https://jsonbox.io/box_479f5c073a80294b4c3b/"+key;
+
+    JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.DELETE, url,null,
+            new Response.Listener<JSONObject>() {
+              @Override
+              public void onResponse(JSONObject response) {
+
+                listener.onResultSucces(true);
+              }
+            },
+            new Response.ErrorListener() {
+              @Override
+              public void onErrorResponse(VolleyError error) {
+                listener.onResultSucces(false);
               }
             }
     );
@@ -88,6 +107,7 @@ public class GetDataService {
     try {
       for (int i = 0; i < jsonArray.length(); i++) {
         JSONObject object = jsonArray.getJSONObject(i);
+        String id = object.getString("_id");
         String title = object.getString("title");
         JSONObject authorObject = object.getJSONObject("author");
         String firstName = authorObject.getString("first_name");
@@ -102,6 +122,7 @@ public class GetDataService {
 
         Book book =
             new Book(
+                id,
                 isbn,
                 title,
                 firstName,

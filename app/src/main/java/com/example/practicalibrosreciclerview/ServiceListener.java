@@ -6,5 +6,6 @@ import java.util.ArrayList;
 
 public interface ServiceListener {
   void onResult(ArrayList<Book> books);
-  void onResultPost(boolean result);
+  void onResultSucces(boolean result);
+
 }

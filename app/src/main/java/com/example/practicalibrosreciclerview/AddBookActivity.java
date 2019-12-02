@@ -2,12 +2,17 @@ package com.example.practicalibrosreciclerview;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.example.practicalibrosreciclerview.model.Book;
 import com.example.practicalibrosreciclerview.presenter.Presenter;
+import com.example.practicalibrosreciclerview.view.BookListActivity;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -59,7 +64,18 @@ public class AddBookActivity extends AppCompatActivity implements  Presenter.Vie
     }
 
     @Override
-    public void showErrorMessage() {}
+    public void showErrorMessage() {
+
+        Toast.makeText(this,"No se pudo conectar con el servicio",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void makeRefresh()
+    {
+        Intent refresh = new Intent(this, BookListActivity.class);
+        startActivity(refresh);
+        finish();
+    }
 
     private void makeComponentsView() {
 
@@ -106,7 +122,7 @@ public class AddBookActivity extends AppCompatActivity implements  Presenter.Vie
         EditText category = findViewById(R.id.et_category);
         categoryS= category.getText().toString();
 
-        book = new Book(isbnS,bookTitleS,authorNameFirst,authorNameSecond,dateS,editorS,pagesNumberS,descriptionBookS,urlImageS,categoryS);
+        book = new Book("",isbnS,bookTitleS,authorNameFirst,authorNameSecond,dateS,editorS,pagesNumberS,descriptionBookS,urlImageS,categoryS);
     }
 
 }

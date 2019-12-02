@@ -32,6 +32,11 @@ public class Presenter implements ServiceListener {
     getDataService.setData(jsonObject);
   }
 
+  public void deleteBook(String key) {
+    GetDataService getDataService = new GetDataService(this);
+    getDataService.deleteData(key);
+  }
+
   public HashMap convertData(Book book){
 
     HashMap data = new HashMap();
@@ -60,20 +65,25 @@ public class Presenter implements ServiceListener {
   }
 
   @Override
-  public void onResultPost(boolean flag) {
+  public void onResultSucces(boolean flag) {
 
     if(flag){
       view.hideProgress();
+      view.makeRefresh();
+
     }else {
       view.showErrorMessage();
     }
 
   }
 
-  public interface View {
+
+
+    public interface View {
     void showData(ArrayList<Book> books);
     void showProgres();
     void hideProgress();
     void showErrorMessage();
+    void makeRefresh();
   }
 }
