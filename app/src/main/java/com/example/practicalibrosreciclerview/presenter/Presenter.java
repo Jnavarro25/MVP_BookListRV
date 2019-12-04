@@ -16,11 +16,31 @@ public class Presenter implements ServiceListener {
 
   public Presenter() {}
 
+  @Override
+  public void onResult(ArrayList<Book> books) {
+    view.showData(books);
+    view.hideProgress();
+
+  }
+
+  @Override
+  public void onResultSucces(boolean flag) {
+
+    if(flag){
+      view.hideProgress();
+      view.makeRefresh();
+
+    }else {
+      view.showErrorMessage();
+    }
+
+  }
+
   public void setView(View view) {
     this.view = view;
   }
 
-  public void makeRequest() {
+  public void makeRequestGet() {
     view.showProgres();
     GetDataService getDataService = new GetDataService(this);
     getDataService.getData();
@@ -56,28 +76,6 @@ public class Presenter implements ServiceListener {
 
     return data;
   }
-
-  @Override
-  public void onResult(ArrayList<Book> books) {
-    view.showData(books);
-    view.hideProgress();
-
-  }
-
-  @Override
-  public void onResultSucces(boolean flag) {
-
-    if(flag){
-      view.hideProgress();
-      view.makeRefresh();
-
-    }else {
-      view.showErrorMessage();
-    }
-
-  }
-
-
 
     public interface View {
     void showData(ArrayList<Book> books);

@@ -42,7 +42,7 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
     presenter = new Presenter();
     presenter.setView(this);
     makeComponentsView();
-    presenter.makeRequest();
+    presenter.makeRequestGet();
   }
 
   @Override

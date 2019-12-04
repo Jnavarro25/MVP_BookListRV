@@ -19,9 +19,11 @@
         android:id="@+id/fab_add_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="15dp"
-        android:src="@android:drawable/ic_input_add"
-        android:clickable="true" />
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        app:srcCompat="@drawable/ic_add_white_35dp"
+        style="@style/Widget.Design.FloatingActionButton"
+        android:clickable="true"
+        tools:ignore="VectorDrawableCompat" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

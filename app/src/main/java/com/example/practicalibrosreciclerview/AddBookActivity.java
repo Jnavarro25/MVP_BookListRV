@@ -4,15 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.practicalibrosreciclerview.model.Book;
 import com.example.practicalibrosreciclerview.presenter.Presenter;
 import com.example.practicalibrosreciclerview.view.BookListActivity;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -23,6 +22,8 @@ public class AddBookActivity extends AppCompatActivity implements  Presenter.Vie
     private ProgressDialog progressDialog;
     private Book book;
     private Button bntAddBook;
+    private EditText isbn,bookTitle,urlImage,authorName,editor,pagesNumber,descriptionBook,category;
+    private boolean cancel = false;
 
 
     @Override
@@ -38,13 +39,78 @@ public class AddBookActivity extends AppCompatActivity implements  Presenter.Vie
             @Override
             public void onClick(View view) {
 
-                makeBook();
-                HashMap data = presenter.convertData(book);
-                presenter.makeRequestPost(data);
+                Book newBook =makeBook();
+                cancel = validateBookData(newBook);
 
+                if(!cancel){
+                    HashMap data = presenter.convertData(newBook);
+                    presenter.makeRequestPost(data);
+                }
+                else { Toast.makeText(AddBookActivity.this,"Error al llenar el formulario",Toast.LENGTH_LONG).show(); }
             }
         });
 
+    }
+
+    private boolean validateBookData(Book newBook) {
+
+        boolean flag = false;
+
+        if(TextUtils.isEmpty(newBook.getIsbn()))
+        {
+            isbn.setError(getString(R.string.et_empty));
+            flag=true;
+        }
+        else if(newBook.getIsbn().length()<10){
+            isbn.setError(getString(R.string.et_isbn_error_tamanos));
+            flag=true;
+        }
+        else if (!TextUtils.isDigitsOnly(book.getIsbn())){
+            isbn.setError(getString(R.string.et_isbn_error_lertras));
+            flag=true;
+        }
+
+        if(TextUtils.isEmpty(newBook.getImageUrl()))
+        {
+            urlImage.setError(getString(R.string.et_empty));
+            flag=true;
+        }
+
+        if(TextUtils.isEmpty(newBook.getTitle()))
+        {
+            bookTitle.setError(getString(R.string.et_empty));
+            flag=true;
+        }
+
+        if(TextUtils.isEmpty(newBook.getAuthorFirstName())&&TextUtils.isEmpty(newBook.getAuthorLastName()))
+        {
+            authorName.setError(getString(R.string.et_empty));
+            flag=true;
+        }
+
+        if(TextUtils.isEmpty(newBook.getCategory()))
+        {
+            category.setError(getString(R.string.et_empty));
+            flag=true;
+        }
+        if(TextUtils.isEmpty(newBook.getDescription()))
+        {
+            descriptionBook.setError(getString(R.string.et_empty));
+            flag=true;
+        }
+        if(TextUtils.isEmpty(newBook.getPagesNumber()))
+        {
+            pagesNumber.setError(getString(R.string.et_empty));
+            flag=true;
+        }
+
+        if(TextUtils.isEmpty(newBook.getPublisher()))
+        {
+            editor.setError(getString(R.string.et_empty));
+            flag=true;
+        }
+
+        return flag;
     }
 
     @Override
@@ -78,8 +144,6 @@ public class AddBookActivity extends AppCompatActivity implements  Presenter.Vie
     }
 
     private void makeComponentsView() {
-
-
         progressDialog= new ProgressDialog(AddBookActivity.this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage(getString(R.string.pd_message_add_book));
@@ -87,42 +151,48 @@ public class AddBookActivity extends AppCompatActivity implements  Presenter.Vie
         bntAddBook = findViewById(R.id.btn_agregar);
     }
 
-    public void makeBook(){
+    public Book makeBook(){
 
-        String  bookTitleS, authorNameS,authorNameFirst,authorNameSecond, categoryS, dateS, pagesNumberS, isbnS, descriptionBookS, urlImageS, editorS;
+        String  bookTitleS, authorNameS,authorNameFirst="",authorNameSecond="", categoryS, dateS, pagesNumberS, isbnS, descriptionBookS, urlImageS, editorS;
 
-        EditText isbn = findViewById(R.id.et_isbn);
+        isbn = findViewById(R.id.et_isbn);
         isbnS = isbn.getText().toString();
 
-        EditText bookTitle = findViewById(R.id.et_title);
+        bookTitle = findViewById(R.id.et_title);
         bookTitleS= bookTitle.getText().toString();
 
-        EditText authorName = findViewById(R.id.et_author);
+        authorName = findViewById(R.id.et_author);
         authorNameS = authorName.getText().toString();
 
-        String[] parts = authorNameS.split(" ");
-        authorNameFirst = parts[0];
-        authorNameSecond = parts[1];
+        if(!TextUtils.isEmpty(authorNameS)){
+            String[] parts = authorNameS.split(" ");
+            authorNameFirst = parts[0];
+            authorNameSecond = parts[1];
+        }
+
 
         EditText date = findViewById(R.id.et_fecha_pub);
         dateS= date.getText().toString();
 
-        EditText editor = findViewById(R.id.et_editorial);
+        editor = findViewById(R.id.et_editorial);
         editorS= editor.getText().toString();
 
-        EditText pagesNumber = findViewById(R.id.et_pages_number);
+        pagesNumber = findViewById(R.id.et_pages_number);
         pagesNumberS = pagesNumber.getText().toString();
 
-        EditText descriptionBook = findViewById(R.id.et_description);
+        descriptionBook = findViewById(R.id.et_description);
         descriptionBookS = descriptionBook.getText().toString();
 
-        EditText urlImage = findViewById(R.id.et_image_url);
+        urlImage = findViewById(R.id.et_image_url);
         urlImageS = urlImage.getText().toString();
 
-        EditText category = findViewById(R.id.et_category);
+        category = findViewById(R.id.et_category);
         categoryS= category.getText().toString();
 
-        book = new Book("",isbnS,bookTitleS,authorNameFirst,authorNameSecond,dateS,editorS,pagesNumberS,descriptionBookS,urlImageS,categoryS);
+
+      return  book = new Book("",isbnS,bookTitleS,authorNameFirst,authorNameSecond,dateS,editorS,pagesNumberS,descriptionBookS,urlImageS,categoryS);
+
     }
+
 
 }

@@ -15,93 +15,194 @@
             android:orientation="vertical">
 
 
-            <EditText
-                android:id="@+id/et_title"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
                 android:hint="@string/et_book_title"
-                android:inputType="textPersonName" />
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
-            <EditText
-                android:id="@+id/et_author"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableLeft="@drawable/ic_book_24dp"
+                    android:maxLines="1"/>
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
                 android:hint="@string/et_author_name"
-                android:inputType="textPersonName" />
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
-            <EditText
-                android:id="@+id/et_isbn"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_author"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:maxLines="1"
+                    android:drawableLeft="@drawable/ic_person_24dp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
                 android:hint="@string/et_isbn"
-                android:inputType="textPersonName" />
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                >
 
-            <EditText
-                android:id="@+id/et_category"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_isbn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:maxLength="10"
+                    android:drawableLeft="@drawable/ic_isbn_key_24dp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
                 android:hint="@string/et_category"
-                android:inputType="textPersonName" />
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                >
 
-            <EditText
-                android:id="@+id/et_editorial"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:maxLines="1"
+                    android:drawableLeft="@drawable/ic_category_24dp"/>
+
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
                 android:hint="@string/et_publisher"
-                android:inputType="textPersonName" />
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                >
 
-            <EditText
-                android:id="@+id/et_description"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_editorial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:maxLines="1"
+                    android:drawableLeft="@drawable/ic_editorial_24dp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:gravity="start|top"
                 android:hint="@string/et_description"
-                android:inputType="textMultiLine" />
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                >
 
-            <EditText
-                android:id="@+id/et_fecha_pub"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:drawableLeft="@drawable/ic_description_24dp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
                 android:hint="@string/et_date"
-                android:inputType="date" />
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
-            <EditText
-                android:id="@+id/et_pages_number"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_fecha_pub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:inputType="date"
+                    android:maxLines="1"
+                    android:drawableLeft="@drawable/ic_date_24dp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
                 android:hint="@string/et_pages_number"
-                android:inputType="number" />
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                >
 
-            <EditText
-                android:id="@+id/et_image_url"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_pages_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:drawableLeft="@drawable/ic_number_pages_24dp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:hint="@string/et_url_imagen" />
+                android:hint="@string/et_url_imagen"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
-            <Button
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_image_url"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableLeft="@drawable/ic_url_24dp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_agregar"
-                android:layout_width="match_parent"
+                android:layout_width="250sp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/btn_text" />
+                android:layout_marginTop="20dp"
+                android:text="@string/btn_text"
+                android:layout_marginBottom="20dp"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_gravity="center"
+
+
+                />
+
+
+
+
 
 
         </LinearLayout>

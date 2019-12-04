@@ -26,4 +26,10 @@
     <string name="et_url_imagen">URL de la imagen</string>
     <string name="et_publisher">Editorial</string>
     <string name="btn_text">Agregar libro</string>
+
+
+    <string name="et_empty">Este campo no puede estar vacio</string>
+    <string name="et_isbn_error_lertras">El Isbn no puede contener letras</string>
+    <string name="et_pages_error_lertras">El numero de paginas no puede contener letras</string>
+    <string name="et_isbn_error_tamanos">La longitud del isbn debe de ser de 10 digitos</string>
 </resources>
