@@ -3,16 +3,15 @@ package com.example.practicalibrosreciclerview.presenter;
 import com.example.practicalibrosreciclerview.ServiceListener;
 import com.example.practicalibrosreciclerview.model.Book;
 import com.example.practicalibrosreciclerview.model.GetDataService;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Presenter implements ServiceListener {
 
   private View view;
+
 
   public Presenter() {}
 
@@ -31,6 +30,7 @@ public class Presenter implements ServiceListener {
       view.makeRefresh();
 
     }else {
+      view.hideProgress();
       view.showErrorMessage();
     }
 

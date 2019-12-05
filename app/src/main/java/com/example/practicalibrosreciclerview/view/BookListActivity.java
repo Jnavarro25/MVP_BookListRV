@@ -35,7 +35,7 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
   private ProgressDialog progressDialog;
   private Presenter presenter;
 
-  @Override
+    @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_rv_book_list);
@@ -50,11 +50,10 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
 
     MenuInflater inflater = getMenuInflater();
     inflater.inflate(R.menu.search_menu, menu);
-
     MenuItem searchItem = menu.findItem(R.id.action_search);
     SearchView searchView = (SearchView) searchItem.getActionView();
-
     searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+    searchView.setMaxWidth(Integer.MAX_VALUE);
 
     searchView.setOnQueryTextListener(
         new SearchView.OnQueryTextListener() {
@@ -117,13 +116,9 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
                   }
         }).setIcon(R.drawable.ic_warning_black_24dp)
                 .show();
-
-
         return false;
       }
     });
-
-
   }
 
   @Override
@@ -138,8 +133,22 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
 
   @Override
   public void showErrorMessage() {
-    Toast.makeText(this, "Servicio no disponible", Toast.LENGTH_LONG).show();
-  }
+
+      new AlertDialog.Builder(BookListActivity.this)
+              .setTitle("¡Atencion!")
+              .setMessage("Verifica tu conexion a internet")
+              .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                  @Override
+                  public void onClick(DialogInterface dialog, int which) {
+
+                      dialog.dismiss();
+                      presenter.makeRequestGet();
+
+                  }
+              }).setIcon(R.drawable.ic_warning_black_24dp)
+              .show();
+
+    }
 
   @Override
   public void makeRefresh() {
@@ -147,7 +156,7 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
     startActivity(refresh);
   }
 
-  public void makeComponentsView() {
+  private void makeComponentsView() {
     recyclerView = findViewById(R.id.rV_bookList);
     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
     recyclerView.setHasFixedSize(true);
@@ -167,4 +176,7 @@ public class BookListActivity extends AppCompatActivity implements Presenter.Vie
           }
         });
   }
+
+
+
 }

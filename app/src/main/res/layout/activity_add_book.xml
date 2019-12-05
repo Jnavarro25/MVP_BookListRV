@@ -19,9 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/et_book_title"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-
-                >
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_title"
@@ -40,9 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/et_author_name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-
-                >
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_author"
@@ -79,8 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/et_category"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                >
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_category"
@@ -98,8 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/et_publisher"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                >
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_editorial"
@@ -117,8 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/et_description"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                >
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_description"
@@ -136,9 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/et_date"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-
-                >
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_fecha_pub"
@@ -156,8 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/et_pages_number"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                >
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_pages_number"
@@ -174,9 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/et_url_imagen"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-
-                >
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_image_url"
@@ -195,16 +183,7 @@
                 android:text="@string/btn_text"
                 android:layout_marginBottom="20dp"
                 style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                android:layout_gravity="center"
-
-
-                />
-
-
-
-
-
-
+                android:layout_gravity="center" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

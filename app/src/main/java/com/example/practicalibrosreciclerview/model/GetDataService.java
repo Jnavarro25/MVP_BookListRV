@@ -22,11 +22,15 @@ public class GetDataService {
   private ServiceListener listener;
   private RequestQueue queue;
 
+
   private ArrayList<Book> bookList = new ArrayList<>();
   // Constructor Method
 
   public GetDataService(ServiceListener listener) {
+
     this.listener = listener;
+
+
   }
 
   public void getData() {
@@ -50,6 +54,7 @@ public class GetDataService {
             new Response.ErrorListener() {
               @Override
               public void onErrorResponse(VolleyError volleyError) {
+                listener.onResultSucces(false);
                 Log.d("Response", "That didn't work!");
               }
             });
