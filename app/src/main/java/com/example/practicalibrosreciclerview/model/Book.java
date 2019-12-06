@@ -16,6 +16,8 @@ public class Book implements Serializable {
     private String imageUrl;
     private String category;
 
+    public Book (){}
+
     public Book(
             String id,
             String isbn,
@@ -41,7 +43,9 @@ public class Book implements Serializable {
         this.category = category;
     }
 
-    public String getId() { return id;}
+    public String getId() {
+        return id;
+    }
 
     public String getIsbn() {
         return isbn;

@@ -5,7 +5,7 @@ import com.example.practicalibrosreciclerview.model.Book;
 import java.util.ArrayList;
 
 public interface ServiceListener {
-  void onResult(ArrayList<Book> books);
-  void onResultSucces(boolean result);
+    void onResult(ArrayList<Book> books);
 
+    void onResultSucces(boolean result);
 }
