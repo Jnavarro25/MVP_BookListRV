@@ -14,7 +14,7 @@
     <string name="isbn"><b>ISBN:</b> %1$s</string>
     <string name="description"><b>Descripción:</b> %1$s</string>
     <string name="pd_message">Cargando lista</string>
-    <string name="pd_message_add_book">Agregando...</string>
+    <string name="pd_message_add_book">Agregando</string>
 
     <string name="et_book_title">Titulo del libro</string>
     <string name="et_author_name">Nombre del autor</string>
@@ -32,4 +32,24 @@
     <string name="et_isbn_error_lertras">El Isbn no puede contener letras</string>
     <string name="et_pages_error_lertras">El numero de paginas no puede contener letras</string>
     <string name="et_isbn_error_tamanos">La longitud del isbn debe de ser de 10 digitos</string>
+
+
+    <string name="alert_title">¡Alerta!</string>
+    <string name="alert_body">Estas seguro que deseas eliminar: %1s</string>
+    <string name="alert_option_yes">Si</string>
+    <string name="alert_option_no">No</string>
+
+    <string name="warning_title">¡Atención!</string>
+    <string name="warning_body">No es posible agregar un libro si no tienes conexión a internet</string>
+    <string name="warning_body_internet">¡Verifica tu conexion a internet!</string>
+    <string name="warning_option">OK</string>
+
+
+    <!-- toast-->
+    <string name="error_toast_form">Error al llenar el formulario</string>
+
+
+
+
+
 </resources>
